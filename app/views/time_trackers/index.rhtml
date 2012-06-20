@@ -14,6 +14,7 @@
                             <th class="issue"><%= l(:label_issue) %></th>
                             <th class="start-date"><%= l(:time_tracker_label_start_date) %></th>
                             <th class="spent-time"><%= l(:label_spent_time) %></th>
+                            <th class="issue"><%= l(:time_tracker_label_status) %></th>
                             <th class="buttons"><%= l(:time_tracker_label_action) %></th>
                         </tr>
                     </thead>
@@ -30,11 +31,50 @@
                                 <td class="issue"><%= link_to_issue issue_from_id(time_tracker[:issue_id]), :project => true %></td>
                                 <td class="start-date"><%= format_time(time_tracker[:started_on]) %></td>
                                 <td class="spent-time"><%= time_tracker.time_spent_to_s %></td>
+                                <td class="issue">
+                                <% if time_tracker.paused %>
+                                    <span class="tracker_status_row" id="timetracker_status_<%= time_tracker.id.to_s %>"><%= l(:time_tracker_label_status_paused) %></span>
+                                <% else %>
+                                    <span class="tracker_status_row" id="timetracker_status_<%= time_tracker.id.to_s %>"><%= l(:time_tracker_label_status_running) %></span>
+                                <% end %>
+                                </td>
                                 <td class="buttons">
+                                    <% if time_tracker.paused %>
+                                        <%= link_to_remote l(:start_time_tracker),
+                                            :url => { :controller => '/time_trackers', :action => 'start', :issue_id => time_tracker[:issue_id] },
+                                            :html => { :class => 'icon icon-start tracker_start', :title => l(:start_time_tracker), :id =>"tracker_start_" + time_tracker.id.to_s },
+                                            :update => 'time-tracker-menu',
+                                            :complete => "updateTrackersStatus('"+ l(:time_tracker_label_status_paused) +"','"+ l(:time_tracker_label_status_running) +"','"+time_tracker.id.to_s+"', true);"
+                                        %>
+                                        <%= link_to_remote l(:suspend_time_tracker),
+                                            :url => { :controller => '/time_trackers', :action => 'suspend', :issue_id => time_tracker[:issue_id] },
+                                            :html => { :class => 'icon icon-pause tracker_pause', :title => l(:suspend_time_tracker), :id =>"tracker_suspend_" + time_tracker.id.to_s, :style=>"display: none" },
+                                            :update => 'time-tracker-menu',
+                                            :complete => "updateTrackersStatus('"+ l(:time_tracker_label_status_paused) +"','"+ l(:time_tracker_label_status_running) +"','"+time_tracker.id.to_s+"', false);"
+                                        %>
+                                    <% else %>
+                                        <%= link_to_remote l(:start_time_tracker),
+                                            :url => { :controller => '/time_trackers', :action => 'start', :issue_id => time_tracker[:issue_id] },
+                                            :html => { :class => 'icon icon-start tracker_start', :title => l(:start_time_tracker), :id => "tracker_start_" + time_tracker.id.to_s, :style=>"display: none" },
+                                            :update => 'time-tracker-menu',
+                                            :complete => "updateTrackersStatus('"+ l(:time_tracker_label_status_paused) +"','"+ l(:time_tracker_label_status_running) +"','"+time_tracker.id.to_s+"', true);"
+                                        %>
+                                        <%= link_to_remote l(:suspend_time_tracker),
+                                            :url => { :controller => '/time_trackers', :action => 'suspend', :issue_id => time_tracker[:issue_id] },
+                                            :html => { :class => 'icon icon-pause tracker_pause', :title => l(:suspend_time_tracker), :id =>"tracker_suspend_" + time_tracker.id.to_s },
+                                            :update => 'time-tracker-menu',
+                                            :complete => "updateTrackersStatus('"+ l(:time_tracker_label_status_paused) +"','"+ l(:time_tracker_label_status_running) +"','"+time_tracker.id.to_s+"', false);"
+                                        %>
+                                    <% end %>
+                                    <%= link_to l(:stop_time_tracker),
+                                        { :controller => '/time_trackers', :action => 'stop', :issue_id => time_tracker[:issue_id] },
+                                        { :class => 'icon icon-stop', :title => l(:stop_time_tracker) }
+                                    %>
                                     <%= link_to_remote l(:time_tracker_label_delete),
                                         :url => { :controller => '/time_trackers', :action => 'delete', :id => time_tracker.id },
                                         :html => { :class => 'icon icon-del' },
-                                        :complete => "$('#{'user-timetracker' + time_tracker.id.to_s}').update('<td colspan=\"0\" class=\"msg\">' + request.responseText + '</td>');"
+                                        :update => 'time-tracker-menu',
+                                        :complete => "$('#{'user-timetracker' + time_tracker.id.to_s}').update('<td colspan=\"0\" class=\"msg\">" + l(:time_tracker_delete_success) + "</td>');"
                                     %>
                                 </td>
                             </tr>
