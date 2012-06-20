@@ -1,7 +1,22 @@
-.icon-clock { background-image: url(../images/clock.gif); }
-.icon-start { background-image: url(../images/time_start.png); }
-.icon-pause { background-image: url(../images/time_pause.png); }
-.icon-stop { background-image: url(../images/time_stop.png); }
+.icon-clock { background-image: url(../images/clock.gif); } 
+
+/*.icon-start { background-image: url(../images/time_start.png); } /* Default: white on transparent */
+/*.icon-start { background-image: url(../images/time_start_black.png); }  /*
+/*.icon-start { background-image: url(../images/time_start_red.png); } */
+.icon-start { background-image: url(../images/time_start_green.png); } 
+/*.icon-start { background-image: url(../images/time_start_blue.png); } */
+
+/*.icon-pause { background-image: url(../images/time_pause.png); } /* Default: white on transparent */
+/*.icon-pause { background-image: url(../images/time_pause_black.png); } */
+/*.icon-pause { background-image: url(../images/time_pause_red.png); } */
+/*.icon-pause { background-image: url(../images/time_pause_green.png); } */
+.icon-pause { background-image: url(../images/time_pause_blue.png); } 
+
+/*.icon-stop { background-image: url(../images/time_stop.png); } /* Default: white on transparent */
+/*.icon-stop { background-image: url(../images/time_stop_black.png); }   */
+.icon-stop { background-image: url(../images/time_stop_red.png); } 
+/*.icon-stop { background-image: url(../images/time_stop_green.png); } */
+/*.icon-stop { background-image: url(../images/time_stop_blue.png); } */
 
 .icon-action {
     background-repeat: no-repeat;
@@ -14,10 +29,29 @@
     padding-bottom: 4px;
 }
 
-.icon-start-action { background-image: url(../images/start.png); }
-.icon-pause-action { background-image: url(../images/pause.png); }
-.icon-stop-action { background-image: url(../images/stop.png); }
-.icon-list-action { background-image: url(../images/list.png); }
+/*.icon-start-action { background-image: url(../images/start.png); } /* Default: white on transparent */
+/*.icon-start-action { background-image: url(../images/start_black.png); } */
+/*.icon-start-action { background-image: url(../images/start_red.png); } */
+.icon-start-action { background-image: url(../images/start_green.png); } 
+/*.icon-start-action { background-image: url(../images/start_blue.png); } */
+
+/*.icon-pause-action { background-image: url(../images/pause.png); } */  /* Default: white on transparent */
+/*.icon-pause-action { background-image: url(../images/pause_black.png); } */
+/*.icon-pause-action { background-image: url(../images/pause_red.png); } */
+/*.icon-pause-action { background-image: url(../images/pause_green.png); } */
+.icon-pause-action { background-image: url(../images/pause_blue.png); } 
+
+/*.icon-stop-action { background-image: url(../images/stop.png); } */  /* Default: white on transparent */
+/*.icon-stop-action { background-image: url(../images/stop_black.png); } */
+.icon-stop-action { background-image: url(../images/stop_red.png); } 
+/*.icon-stop-action { background-image: url(../images/stop_green.png); } */
+/*.icon-stop-action { background-image: url(../images/stop_blue.png); } */
+
+.icon-list-action { background-image: url(../images/list.png); } */  /* Default: white on transparent */
+/*.icon-list-action { background-image: url(../images/list_black.png); }   */  
+/*.icon-list-action { background-image: url(../images/list_red.png); } */  
+/*.icon-list-action { background-image: url(../images/list_green.png); } */  
+/*.icon-list-action { background-image: url(../images/list_blue.png); } */  
 
 #time-tracker-menu { margin-right: 8px; }
 #time-tracker-menu a { margin-right: 0px; }
